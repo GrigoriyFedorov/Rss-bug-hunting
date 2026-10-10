@@ -22,8 +22,12 @@ function getFiltered() {
   const category = categorySelect.value;
   const sort = sortSelect.value;
 
+  if (search) {
+    result = result.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()));
+  }
+
   if (category !== "all") {
-    result = products.filter((p) => p.category === category);
+    result = result.filter((p) => p.category === category);
   }
 
   if (sort === "asc") {
@@ -31,10 +35,6 @@ function getFiltered() {
   } else if (sort === "desc") {
     result.sort((a, b) => b.price - a.price);
   } 
-
-  if (search) {
-    result = result.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()));
-  }
 
   return result;
 }
